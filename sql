@@ -104,3 +104,9 @@ from dat
 left join employees emp on emp.emp_no = dat.emp_no
 
 --- query 8 List the frequency counts, in descending order, of all the employee last names (that is, how many employees share each last name).
+
+select last_name
+, count(last_name) as count_of_emp
+from employees
+group by last_name
+order by count_of_emp desc
