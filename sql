@@ -81,4 +81,26 @@ left join employees emp on emp.emp_no = dat.emp_no
 
 --- query 7 List each employee in the Sales and Development departments, including their employee number, last name, first name, and department name.
 
+with dis as
+(
+select * 
+from departments
+where dept_name = 'Sales' OR dept_name = 'Development'
+)
+,
+dat as
+(
+select dept_emp.emp_no
+, dis.dept_name
+from dis
+left join dept_emp on dis.dept_no = dept_emp.dept_no
+	)
+
+select dat.emp_no
+, emp.last_name
+, emp.first_name
+, dat.dept_name
+from dat
+left join employees emp on emp.emp_no = dat.emp_no
+
 --- query 8 List the frequency counts, in descending order, of all the employee last names (that is, how many employees share each last name).
